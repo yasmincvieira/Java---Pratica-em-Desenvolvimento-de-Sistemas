@@ -21,12 +21,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JList;
-import javax.swing.JOptionPane;
-
 import java.awt.Panel;
 import javax.swing.JScrollPane;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class TelaAluno extends JFrame {
 
@@ -34,14 +30,7 @@ public class TelaAluno extends JFrame {
 	private JPanel contentPane;
 	private JTextField tfNome;
 	private JTable table;
-	private String radioB = null;
-	private String checkB = null;
-	private JComboBox cbCursos;
-	private JCheckBox cbQuimica;
-	private JCheckBox cbProgramacao;
-	private JRadioButton rbMatutino;
-	private JRadioButton rbVespertino;
-	private JRadioButton rbNoturno;
+	
 	DefaultTableModel tab;
 
 	/**
@@ -63,7 +52,6 @@ public class TelaAluno extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	
 	public TelaAluno() {
 		setTitle("Tela Aluno");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -83,24 +71,26 @@ public class TelaAluno extends JFrame {
 		contentPane.add(tfNome);
 		tfNome.setColumns(10);
 		
-		cbCursos = new JComboBox();
-		cbCursos.setModel(new DefaultComboBoxModel(new String[] {" ","Química", "Informática"}));
-		cbCursos.setBounds(72, 47, 226, 22);
-		contentPane.add(cbCursos);
+		
 		
 		JLabel lblNewLabel_1 = new JLabel("Curso:");
 		lblNewLabel_1.setBounds(28, 51, 46, 14);
 		contentPane.add(lblNewLabel_1);
 		
-		rbMatutino = new JRadioButton("Matutino");
+		JComboBox cbCursos = new JComboBox();
+		cbCursos.setModel(new DefaultComboBoxModel(new String[] {"Química", "Informática"}));
+		cbCursos.setBounds(72, 47, 226, 22);
+		contentPane.add(cbCursos);
+		
+		JRadioButton rbMatutino = new JRadioButton("Matutino");
 		rbMatutino.setBounds(86, 93, 81, 23);
 		contentPane.add(rbMatutino);
 		
-		rbVespertino = new JRadioButton("Vespertino");
+		JRadioButton rbVespertino = new JRadioButton("Vespertino");
 		rbVespertino.setBounds(179, 92, 89, 23);
 		contentPane.add(rbVespertino);
 		
-		rbNoturno = new JRadioButton("Noturno");
+		JRadioButton rbNoturno = new JRadioButton("Noturno");
 		rbNoturno.setBounds(280, 92, 81, 23);
 		contentPane.add(rbNoturno);
 		
@@ -108,11 +98,11 @@ public class TelaAluno extends JFrame {
 		lbDisciplinas.setBounds(28, 141, 68, 14);
 		contentPane.add(lbDisciplinas);
 		
-		cbProgramacao = new JCheckBox("Programação");
+		JCheckBox cbProgramacao = new JCheckBox("Programação");
 		cbProgramacao.setBounds(100, 137, 115, 23);
 		contentPane.add(cbProgramacao);
 		
-		cbQuimica = new JCheckBox("Química");
+		JCheckBox cbQuimica = new JCheckBox("Química");
 		cbQuimica.setBounds(220, 137, 97, 23);
 		contentPane.add(cbQuimica);
 		
@@ -127,18 +117,6 @@ public class TelaAluno extends JFrame {
 		
 		
 		table = new JTable();
-		table.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if (table.getSelectedRow() != -1) {
-					tfNome.setText(table.getValueAt(table.getSelectedRow(), 0).toString());
-					cbCursos.setSelectedItem(table.getValueAt(table.getSelectedRow(), 1).toString());
-				} else {
-					JOptionPane.showMessageDialog(null, "Selecione um produto", "Atenção", 
-							JOptionPane.WARNING_MESSAGE);
-				}
-			}
-		});
 		
 		table.setModel(new DefaultTableModel(
 				new Object[][] {},   // começa vazia
@@ -161,14 +139,8 @@ public class TelaAluno extends JFrame {
 		btExcluir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				if (table.getSelectedRow() != -1) {
-					DefaultTableModel tab = (DefaultTableModel) table.getModel();
-					tab.removeRow(table.getSelectedRow());
-				}else {
-					JOptionPane.showMessageDialog(null, "Selecione um produto", 
-							"Atenção", JOptionPane.WARNING_MESSAGE);
-				}
-				limpaCampos();
+				
+				
 			}
 		});
 		btExcluir.setBounds(383, 115, 103, 23);
@@ -178,44 +150,10 @@ public class TelaAluno extends JFrame {
 		btAlterar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				if (rbMatutino.isSelected()) {
-					radioB = rbMatutino.getText();
-				}
-				
-				if (rbVespertino.isSelected()) {
-					radioB = rbVespertino.getText();
-				}
-				
-				if (rbNoturno.isSelected()) {
-					radioB = rbNoturno.getText();
-				}
 				
 				
-				if (cbProgramacao.isSelected()) {
-					checkB = cbProgramacao.getText();
-				}
-				
-				if (cbQuimica.isSelected()) {
-					checkB = cbQuimica.getText();
-				}
-				
-				if (tfNome.getText().isEmpty()) {
-					JOptionPane.showMessageDialog(null, "Favor inserir o nome do aluno");
-				}else {
-					if (table.getSelectedRow() != -1) {
-						table.setValueAt(tfNome.getText(), table.getSelectedRow(), 0);
-						table.setValueAt(cbCursos.getSelectedItem(), table.getSelectedRow(), 1);
-						table.setValueAt(radioB, table.getSelectedRow(), 2);
-						table.setValueAt(checkB, table.getSelectedRow(), 3);
-					}else {
-						JOptionPane.showMessageDialog(null, "Selecione um produto", 
-							"Atenção", JOptionPane.WARNING_MESSAGE);
-				}
-				
-				limpaCampos();
-				
-				}
-			}});
+			}
+		});
 		btAlterar.setBounds(383, 81, 103, 23);
 		contentPane.add(btAlterar);
 		
@@ -225,7 +163,7 @@ public class TelaAluno extends JFrame {
 		btCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				
+				String radioB = null;
 				if (rbMatutino.isSelected()) {
 					radioB = rbMatutino.getText();
 				}
@@ -239,6 +177,7 @@ public class TelaAluno extends JFrame {
 				}
 				
 				
+				String checkB = null;
 				if (cbProgramacao.isSelected()) {
 					checkB = cbProgramacao.getText();
 				}
@@ -247,18 +186,14 @@ public class TelaAluno extends JFrame {
 					checkB = cbQuimica.getText();
 				}
 				
-				if (tfNome.getText().isEmpty()) {
-					JOptionPane.showMessageDialog(null, "Favor inserir o nome do aluno");
-				}else {
+				tab = (DefaultTableModel) table.getModel();
 				
-					tab = (DefaultTableModel) table.getModel();
+				Object[] camposTabela = {tfNome.getText(), cbCursos.getSelectedItem(), radioB, checkB};
 				
-					Object[] camposTabela = {tfNome.getText(), cbCursos.getSelectedItem(), radioB, checkB};
+				tab.addRow(camposTabela);
+			
 				
-					tab.addRow(camposTabela);
-				}
-				
-				limpaCampos();
+				tfNome.setText("");
 				
 			}
 		});
@@ -270,14 +205,5 @@ public class TelaAluno extends JFrame {
 		contentPane.add(lbTurno);
 		
 		
-	}
-	private void limpaCampos() {
-		tfNome.setText("");
-		cbCursos.setSelectedIndex(0);
-		rbMatutino.setSelected(false);
-		rbVespertino.setSelected(false);
-		rbNoturno.setSelected(false);
-		cbProgramacao.setSelected(false);
-		cbQuimica.setSelected(false);
 	}
 }
