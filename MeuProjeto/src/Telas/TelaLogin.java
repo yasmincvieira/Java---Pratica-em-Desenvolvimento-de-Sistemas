@@ -58,7 +58,7 @@ public class TelaLogin extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("Entrar no Sistema");
 		lblNewLabel.setFont(new Font("Yu Gothic UI Semilight", Font.BOLD, 20));
-		lblNewLabel.setBounds(247, 101, 157, 27);
+		lblNewLabel.setBounds(247, 101, 224, 27);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Usuário:");

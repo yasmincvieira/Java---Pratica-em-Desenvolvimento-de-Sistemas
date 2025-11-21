@@ -3,6 +3,7 @@ package Telas;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JScrollPane;
@@ -11,6 +12,8 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 
 public class TelaInicial extends JFrame {
@@ -18,6 +21,8 @@ public class TelaInicial extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTable table;
+	
+	private NovaTarefa novaTarefa;
 
 	/**
 	 * Launch the application.
@@ -51,6 +56,8 @@ public class TelaInicial extends JFrame {
 		scrollPane.setBounds(39, 33, 602, 271);
 		contentPane.add(scrollPane);
 		
+		
+
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
@@ -58,7 +65,9 @@ public class TelaInicial extends JFrame {
 			new String[] {
 				"Matéria", "Tipo", "Grupo", "Data de Inicio", "Data de Entrega"
 			}
+			
 		));
+		
 		scrollPane.setViewportView(table);
 		
 		JButton btExcluir = new JButton("Excluir");
@@ -97,10 +106,13 @@ public class TelaInicial extends JFrame {
 		btEntrege.setBounds(70, 361, 89, 23);
 		contentPane.add(btEntrege);
 		
+		novaTarefa = new NovaTarefa();
+		
 		JButton btNovaTarefa = new JButton("Cadastrar Nova Tarefa");
 		btNovaTarefa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				novaTarefa.setVisible(true);
 				
 				
 			}
