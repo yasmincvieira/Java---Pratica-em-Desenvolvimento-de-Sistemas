@@ -13,18 +13,19 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JPasswordField;
 
 public class TelaLogin extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField tfUsuario;
-	private JTextField tfSenha;
 	
 	private TelaInicial telaInicial;
 	private String user = "Yasmin";
 	private String senha = "PDS";
 	private Usuario usuario;
+	private JPasswordField tfSenha;
 
 
 	/**
@@ -53,6 +54,8 @@ public class TelaLogin extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
+		setResizable(false);
+		
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
@@ -77,12 +80,6 @@ public class TelaLogin extends JFrame {
 		lblNewLabel_2.setBounds(128, 242, 70, 14);
 		contentPane.add(lblNewLabel_2);
 		
-		tfSenha = new JTextField();
-		tfSenha.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 16));
-		tfSenha.setBounds(208, 242, 290, 20);
-		contentPane.add(tfSenha);
-		tfSenha.setColumns(10);
-		
 		telaInicial = new TelaInicial();
 		
 		JButton btEntrar = new JButton("Entrar");
@@ -104,6 +101,10 @@ public class TelaLogin extends JFrame {
 		btEntrar.setFont(new Font("Yu Gothic UI Semilight", Font.PLAIN, 16));
 		btEntrar.setBounds(279, 305, 89, 23);
 		contentPane.add(btEntrar);
+		
+		tfSenha = new JPasswordField();
+		tfSenha.setBounds(208, 242, 290, 20);
+		contentPane.add(tfSenha);
 	}
 	private void limpaCampos() {
 		tfUsuario.setText("");
