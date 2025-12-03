@@ -134,11 +134,7 @@ public class TelaInicial extends JFrame {
 					tfGrupo.setText(table_1.getValueAt(table_1.getSelectedRow(), 2).toString());
 					tfInicio.setText(table_1.getValueAt(table_1.getSelectedRow(), 3).toString());
 					tfEntrega.setText(table_1.getValueAt(table_1.getSelectedRow(), 4).toString());
-				} else {
-					JOptionPane.showMessageDialog(null, "Selecione um produto", "Atenção", 
-							JOptionPane.WARNING_MESSAGE);
-				}
-				
+				} 
 			}
 		});
 		
@@ -148,15 +144,7 @@ public class TelaInicial extends JFrame {
 				new Object[][] {},   
 				new String[] {
 						"Matéria", "Tipo", "Grupo", "Data de Inicio", "Data de Entrega"}  
-			) {
-//				private static final long serialVersionUID = 1L;
-//				boolean[] columnEditables = new boolean[] {
-//					false, false, false, false, false
-//				};
-//				public boolean isCellEditable(int row, int column) {
-//					return columnEditables[column];   
-//				}
-			});
+			));
 		
 		scrollPane.setViewportView(table_1);
 		
